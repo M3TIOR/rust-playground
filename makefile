@@ -93,26 +93,26 @@ $(foreach l, $(call index,$(files)),$(eval $(call arrval,$(targets),$(l)): ;\
 	$(call config,name=\"$(call arrval,$(targets),$(l))\")\
 	$(call config,path=\"$(call arrval,$(files),$(l))\")\
 	cargo build;\
-	rm $(PATH_ABSOLUTE)/Cargo.toml;\
 ))
 
 help: list ;
-	@ echo "To build individual packages:"
-	@ echo "\t'make <package> <package2> ...'"
-	@ echo "or, to build everything:"
+	@ echo "To compile individual snippits:"
+	@ echo "\t'make <snippit1> <snippit2> ...'"
+	@ echo "or, to compile everything:"
 	@ echo "\tmake all"
 
 
 list: ;
-	@ echo "The current packages available for install in this repository are..."
-	@ for package in $(preload_packages); do\
-		P=$${package%.mk}; echo "\t$${P##*/}";\
+	@ echo "The current snippits available for compilation in this repository are..."
+	@ for package in $(targets); do\
+		echo "$$package";\
 	done;
 
-all: $(targets) post; @ # Build Everything
+all: $(targets); @ # Build Everything
 
 clean:
 	@ rm -vrf $(PATH_ABSOLUTE)/target
-	@ rm -vrf $(PATH_ABSOLUTE)/Cargo.toml
 	@ rm -vrf $(PATH_ABSOLUTE)/Cargo.lock
 	@ echo "Clean!"
+
+$(shell rm $(PATH_ABSOLUTE)/Cargo.toml;)
