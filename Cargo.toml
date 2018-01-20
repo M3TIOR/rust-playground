@@ -1,0 +1,21 @@
+[package]
+name = "playground"
+version = "0.1.0"
+authors = ["M3TIOR <jtimmerman32@gmail.com>"]
+
+[dependencies]
+pancurses = "0.13"
+rand = "0.4.2"
+
+
+[[bin]]
+name = "hello"
+path = "src/examples/basic/hello.rs"
+
+[[bin]]
+name = "hello-pancurses"
+path = "src/examples/ncurses/hello-pancurses.rs"
+
+[[bin]]
+name = "rain-pancurses"
+path = "src/examples/ncurses/rain-pancurses.rs"
